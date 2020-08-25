@@ -1,0 +1,51 @@
+﻿<div class="row">
+    <h1>Normal Gym</h1>
+    <br />
+    <p style="color:white;font-size:large;font-family:Carlito;">Normal gym for normal working man or woman. It is suitable for everyone. It opens 24/7.</p>
+    <br />
+    <br />
+    <br />
+    <div class="col-lg-6" id="ThreeBlocks">
+        <div class="col-md-4 counterBlock" data-aos="fade-right">
+            <p id="counter" class="numberBlock" data-target="500">0</p>
+            <hr style="width:30%;text-align:center;" />
+            <p class="textBlock">Gym Members</p>
+        </div>
+        <div class="col-md-4 counterBlock" data-aos="fade-left">
+            <p id="counter" class="numberBlock" data-target="1500">0</p>
+            <hr style="width:30%;text-align:center;" />
+            <p class="textBlock">Gym Equipments</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        AOS.init();
+
+        const counters = document.querySelectorAll('#counter');
+        const speed = 100; // The lower the slower
+
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+
+                // Lower inc to slow and higher to slow
+                const inc = target / speed;
+
+                // Check if target is reached
+                if (count < target) {
+                    // Add inc to count and output in counter
+                    counter.innerText = count + inc;
+                    // Call function every ms
+                    setTimeout(updateCount, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+
+            updateCount();
+        });
+    });
+</script>
